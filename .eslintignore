@@ -1,0 +1,27 @@
+# Node modules
+node_modules/
+
+# Next.js build output
+.next/
+
+# Build output
+out/
+
+# Test coverage
+coverage/
+
+# Environment variable files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Vercel
+.vercel/
+
+# TypeScript build info
+*.tsbuildinfo
+
+# Log files
+*.log
