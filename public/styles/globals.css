@@ -2,14 +2,109 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
 body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
+  @apply m-0 p-0 font-sans;
 }
 
-h1 {
-  color: rebeccapurple;
-  text-align: center;
-  margin-top: 1 rem;
+body {
+  @apply bg-white text-black;
+  height: 100vh;
+}
+
+input[type='text'] {
+  @apply outline-none w-4/5 max-w-xs;
+}
+
+button {
+  @apply bg-none border-none cursor-pointer;
+}
+
+.visible-border {
+  border: 2px solid #38a169;
+}
+
+.menu {
+  position: absolute;
+  z-index: 1000;
+}
+
+.info {
+  z-index: 999;
+  position: absolute;
+}
+
+.loading-dots {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.loading-dots span {
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  background-color: #ccc;
+  border-radius: 50%;
+  display: inline-block;
+  animation: loading 1s infinite alternate;
+}
+
+.loading-dots span:nth-child(3) {
+  animation-delay: 0.4;
+}
+
+@keyframes loading {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.3;
+  }
+}
+
+.ai-message,
+.user-message {
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 5px 0;
+  margin-left: 40px;
+  width: fit-content;
+}
+
+.ai-message {
+  background-color: lightgreen;
+  position: relative;
+}
+
+.user-message {
+  justify-content: flex-end;
+  background-color: lightgray;
+  margin-left: auto;
+}
+
+.message-text {
+  border-radius: 15px;
+  padding: 8px 12px;
+  background-color: inherit;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  max-height: 70vh;
+}
+
+.ai-avatar {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: -50px;
+  top: 50%;
+  transform: translateY(-50%);
 }
