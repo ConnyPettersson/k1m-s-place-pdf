@@ -76,12 +76,12 @@ export const scrapeURL = async (url: string): Promise<string> => {
     )
   ) {
     console.error(`Access to the URL ${url} is disallowed by robots.txt`);
-    // throwar fel => vi avbryter scraping
+    // throwar fel => vi avbryter scraping om url:en är förbjuden
     throw new Error('Access to the URL is disallowed by robots.txt');
   } 
 
 
-    //gör en HTTP GET-begäran med axios till den webbadress som skickats in
+    //gör en HTTP GET-begäran med axios till den webbadress som skickats in för att hämta HTML
       //     responseType = 'arraybuffer' -> vi får binär data, 
     //     men kan sedan decoda text via iconv-lite. 
     //     maxRedirects, timeout = extra inställningar.
@@ -101,8 +101,9 @@ export const scrapeURL = async (url: string): Promise<string> => {
     //     Vi får en "$" som om det vore jQuery. 
       const $ = load(decodedContent);
   
-        // Skapa en variabel 'content' och fyll med text beroende på domän.
-    //     Varför? För att t.ex. "bris.se" kanske vi bara vill parsa "div.specific-class-for-bris" etc.
+        // Skapa en variabel 'content' och fyll med text beroende på domän. Här sker själva söket i url:erna som kommer från url.ts
+    //     Varför? För att t.ex. "bris.se" kanske vi bara vill parsa "div.specific-class-for-bris" etc. Man ska välja rätt CSS-selektor för att parsa. Här är bara en grund. Mer riktad mot olika <section> behövs
+    // div.specific-class-for-bris, .another-class är bara exempelnamn. Hämtar just nu från alla p-element från alla url:er
     let content = '';
     if (url.includes('bris.se')) {
       content = $('div.specific-class-for-bris, .another-class, p').text();
@@ -143,6 +144,8 @@ export const scrapeURL = async (url: string): Promise<string> => {
     throw error;
   }
 };
+
+
 
 //skapa en lista "urls"
 

@@ -19,7 +19,7 @@ interface GenerateNextApiRequest extends NextApiRequest {
   // med formatet { text: string } (enligt ResponseData)
 }
 
-// 
+// samlar in url:er från url.ts för att loopa igenom i steg 5
 const urls = importedUrls;
 
 export default async function handler(
